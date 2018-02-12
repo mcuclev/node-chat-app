@@ -9,10 +9,7 @@
     //   text: 'send nudes'
     // });
 
-    socket.emit('createMessage', {
-      from: 'foxise',
-      text: 'hello froggster!'
-    });
+
 
   });
 

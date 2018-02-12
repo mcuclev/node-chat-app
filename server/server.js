@@ -22,14 +22,15 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
 
-  socket.emit('newMessage', {
-    nick: 'froggit',
-    text: 'hello human!',
-    createdAt: 12
-  });
+
 
   socket.on('createMessage', (newMessage) => {
     console.log('createMessage', newMessage);
+    io.emit('newMessage', {
+      from: newMessage.from,
+      text: newMessage.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   // socket.emit('newEmail', {
