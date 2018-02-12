@@ -22,17 +22,17 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
   socket.emit('newMessage', {
-    rom: 'admin',
+    from: 'admin',
     text: 'welcome to the chat app',
     createdAt: new Date().getTime()
   });
 
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'did you hear that?'));
 
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-
+    callback('/this came from the server/');
   //   socket.broadcast.emit('newMessage', {
   //     from: newMessage.from,
   //     text: newMessage.text,
